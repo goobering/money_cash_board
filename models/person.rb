@@ -12,7 +12,7 @@ def initialize(options)
 end
 
 def save()
-  sql = "INSERT INTO people (first_name, last_name) VALUES ('#{@first_name}', '#{last_name})' RETURNING *;"
+  sql = "INSERT INTO people (first_name, last_name) VALUES ('#{@first_name}', '#{last_name}') RETURNING *;"
   result = SqlRunner.run(sql)
   @id = result[0]['id'].to_i
 end

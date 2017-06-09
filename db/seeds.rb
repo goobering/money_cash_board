@@ -1,3 +1,5 @@
+require 'pry-byebug'
+
 require_relative '../models/person.rb'
 require_relative '../models/tag.rb'
 
@@ -15,3 +17,6 @@ tag_2 = Tag.new('name' => 'Travel')
 tag_2.save()
 tag_3 = Tag.new('name' => 'Pets')
 tag_3.save()
+
+binding.pry
+nil

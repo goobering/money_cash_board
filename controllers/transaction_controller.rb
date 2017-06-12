@@ -38,7 +38,7 @@ get '/person/:id/transactions/new' do
 end
 
 post '/person/:person_id/transactions' do
-  # binding.pry
+  @person = Person.find(params[:person_id].to_i)
   @transaction = Transaction.new(params)
   @transaction.save()
   erb(:'transactions/create_transaction')

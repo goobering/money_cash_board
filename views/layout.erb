@@ -27,8 +27,9 @@
         </main>
         <nav class="HolyGrail-nav">
             <ul class="nav-list">
-                <li>Home</li>
-                <li>New entry</li>
+                <!-- Nav items require Person ID - don't show if no Person selected -->
+                <%= erb :'nav_partials/user_not_present' unless @person %>
+                <%= erb :'nav_partials/user_present' if @person %>
             </ul>
         </nav>
         <aside class="HolyGrail-ads" />

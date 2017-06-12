@@ -46,6 +46,12 @@ class Transaction
     return result.map {|transaction| Transaction.new(transaction)}
   end
 
+  def self.find(id)
+    sql = "SELECT * FROM transactions WHERE transactions.id = #{id};"
+    result = SqlRunner.run(sql)
+    return Transaction.new(result[0])
+  end
+
   def self.sum_values(transactions)
     sum = 0
     for transaction in transactions

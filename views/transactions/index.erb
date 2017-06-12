@@ -13,11 +13,14 @@
   <% for transaction in @transactions %>
     <div class="item">
       <div class="item-block">
-        <div class="filler"></div>
+        <div class="filler-left"></div>
           <p class="merchant_name"><%= "#{transaction.merchant_name}" %></p>
           <p class="value">£<%= "#{transaction.value}" %></p>
           <p class="tag"><%= "#{transaction.tag().name}" %></p>
-        <div class="filler"></div>
+          <div class="filler-right">
+            <a class="btn-edit" href="/person/<%= @person.id %>/transactions/<%= transaction.id %>/update"><p>Edit</p></a>
+            <a class="btn-delete" href=""><p>Delete</p></a>
+          </div>
       </div>
     </div>
   <% end %>

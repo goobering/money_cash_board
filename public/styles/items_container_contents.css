@@ -1,6 +1,29 @@
-.filler {
+.filler-left,
+.filler-right {
 	margin: auto;
 	flex: 1;
+}
+
+.filler-right {
+	font-size: 0.5em;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+}
+
+.btn-edit,
+.btn-delete {
+	margin: 0px 0px 6px 0px;
+}
+
+.btn-edit {
+	background-color: #58A4B0;
+	width: 30%;
+}
+
+.btn-delete {
+	background-color: #58A4B0;
+	width: 30%;
 }
 
 .merchant_name,

@@ -16,7 +16,7 @@ get '/person/:id/transactions' do
   erb(:'transactions/index')
 end
 
-# Accept tag value selected by user, redirect to appropriate page of transactions
+# Accept tag name selected by user, redirect to appropriate page of transactions
 post '/person/:id/searchbytag/' do
   redirect to("/person/#{params[:id]}/transactions/searchbytag/#{params[:tag_id]}")
 end
@@ -37,9 +37,20 @@ get '/person/:id/transactions/new' do
   erb(:'transactions/new_transaction')
 end
 
-post '/person/:person_id/transactions' do
-  @person = Person.find(params[:person_id].to_i)
+post '/person/:id/transactions' do
+  @person = Person.find(params[:id].to_i)
   @transaction = Transaction.new(params)
   @transaction.save()
   erb(:'transactions/create_transaction')
+end
+
+get '/person/:id/transactions/:transaction_id/update' do
+  @person = Person.find(params[:id].to_i)
+  @transaction = Transaction.find(params[:transaction_id].to_i)
+  @tags = Tag.all()
+  erb(:'transactions/update')
+end
+
+post '/person/:id/transactions/:transaction_id/update' do
+
 end

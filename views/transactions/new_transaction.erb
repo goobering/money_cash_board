@@ -2,7 +2,7 @@
   <label for="merchant-name">Merchant:</label>
   <input type="text" name="merchant_name" id="merchant-name" required>
   <label for="value">Value:</label>
-  <input type="text" name="value" id="value" required>
+  <input type="number" name="value" id="value" required>
   <select name="tag_id" id="tag-select">
     <% for tag in @tags %>
       <option value="<%= tag.id %>"><%= "#{tag.name}" %></option>

@@ -1,7 +1,7 @@
 <div class="total-value">
   <p>Total spent: £<%= @transaction_value %></p>
 </div>
-<form action="/person/<%= @person.id %>/searchbytag/" method="post">
+<form action="/person/<%= @person.id %>/searchbytag" method="post">
   <select name="tag_id" id="tag-select">
     <% for tag in @tags %>
       <option value="<%= tag.id %>"><%= "#{tag.name}" %></option>
@@ -19,7 +19,7 @@
           <p class="tag"><%= "#{transaction.tag().name}" %></p>
           <div class="filler-right">
             <a class="btn-edit" href="/person/<%= @person.id %>/transactions/<%= transaction.id %>/update"><p>Edit</p></a>
-            <a class="btn-delete" href=""><p>Delete</p></a>
+            <a class="btn-delete" href="/person/<%= @person.id %>/transactions/<%= transaction.id %>/delete"><p>Delete</p></a>
           </div>
       </div>
     </div>

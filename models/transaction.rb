@@ -1,5 +1,5 @@
 require_relative '../db/sql_runner.rb'
-
+require 'pry-byebug'
 class Transaction
 
   attr_reader :id
@@ -8,7 +8,7 @@ class Transaction
   def initialize(options)
     @id = options['id'].to_i
     @merchant_name = options['merchant_name']
-    @value = options['value'].to_i
+    @value = options['value'].to_f
     @person_id = options['person_id'].to_i
     @tag_id = options['tag_id'].to_i
   end
@@ -20,6 +20,17 @@ class Transaction
 
   def tag()
     return Tag.find(@tag_id)
+  end
+
+  def update(options)
+    sql = "UPDATE transactions SET (merchant_name, value, person_id, tag_id) = ('#{options['merchant_name']}', #{options['value']}, #{options['person_id']}, #{options['tag_id']}) WHERE id = #{options['id']};"
+
+    SqlRunner.run(sql)
+  end
+
+  def delete()
+    sql = "DELETE FROM transactions WHERE id = #{@id};"
+    SqlRunner.run(sql)
   end
 
   def self.all()

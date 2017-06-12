@@ -2,13 +2,13 @@
   <label for="merchant-name">Merchant:</label>
   <input type="text" name="merchant_name" id="merchant-name" value="<%= @transaction.merchant_name %>" required>
   <label for="value">Value:</label>
-  <input type="number" name="value" id="value" value="<%= @transaction.value %>" required>
+  <input type="number" name="value" id="value" value="<%= @transaction.value %>" min="0.01" step="0.01" required>
   <select name="tag_id" id="tag-select">
     <% for tag in @tags %>
       <% if tag.id == @transaction.tag().id %>
-        <option value="<%= @transaction.tag().id %>" selected><%= "#{tag.name}" %></option>
+        <option value="<%= tag.id %>" selected><%= "#{tag.name}" %></option>
       <% else %>
-        <option value="<%= @transaction.tag().id %>"><%= "#{tag.name}" %></option>
+        <option value="<%= tag.id %>"><%= "#{tag.name}" %></option>
       <% end %>  
     <% end %>
   </select>

@@ -1,7 +1,7 @@
 <div class="total-value">
   <p>Total spent on <%= @tag.name %>: £<%= @transaction_value %></p>
 </div>
-<form action="/person/<%= @person.id %>/searchbytag/" method="post">
+<form action="/person/<%= @person.id %>/searchbytag" method="post">
   <select name="tag_id" id="tag-select">
     <% for tag in @tags %>
       <% if tag.id == @tag.id %>

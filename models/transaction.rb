@@ -18,6 +18,10 @@ class Transaction
     result = SqlRunner.run(sql)
   end
 
+  def tag()
+    return Tag.find(@tag_id)
+  end
+
   def self.all()
     sql = "SELECT * FROM transactions;"
     result = SqlRunner.run(sql)

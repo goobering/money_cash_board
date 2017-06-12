@@ -1,0 +1,33 @@
+.filler {
+	margin: auto;
+	flex: 1;
+}
+
+.merchant_name,
+.value,
+.tag {	
+	margin: 0px 0px 6px 0px;
+}
+
+.merchant_name {
+	flex: 2;
+	background-color: #a9bcd0;
+	vertical-align: middle;
+	text-align: right;
+	min-width: 140px;
+	padding: 0 10px 0  0;
+}
+
+.value {
+	flex: 1;
+	background-color: #b3cadd;
+	text-align: center;
+	min-width: 110px;
+}
+
+.tag {
+	flex: 2;
+	background-color: #a9bcd0;
+	min-width: 150px;
+	padding: 0 0 0 10px;
+}

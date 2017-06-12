@@ -28,6 +28,12 @@ class Person
     return Transaction.all_by_person(self)
   end
 
+  def self.all()
+    sql = "SELECT * FROM people;"
+    result = SqlRunner.run(sql)
+    return result.map { |person| Person.new(person) }
+  end
+
   def self.find(id)
     sql = "SELECT * FROM people WHERE people.id = #{id};"
     result = SqlRunner.run(sql)

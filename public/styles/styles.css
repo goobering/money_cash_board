@@ -1,0 +1,50 @@
+.HolyGrail,
+.HolyGrail-body {
+	font-family: 'Poppins', sans-serif;
+	font-color: #1b1b1e;
+	display: flex;
+	flex-direction: column;
+}
+
+.HolyGrail {	
+	min-height: 100vh;
+}
+
+.HolyGrail-body {
+	flex: 1;
+}
+
+main {
+	display: flex;
+	flex-direction: column;
+}
+
+.nav-list {
+	list-style-type : none;
+}
+
+.HolyGrail-nav,
+.HolyGrail-ads {
+	background-color: #D8DBE2;
+}
+
+.HolyGrail-nav {
+	order: -1;
+}
+
+@media (min-width: 768px) {
+	.HolyGrail-body {		
+		flex-direction: row;
+		flex 1;
+	}
+
+	.HolyGrail-content {
+		flex: 1;
+	}
+
+	.HolyGrail-nav, .HolyGrail-ads {
+		/* 12em is the width of the columns */
+		flex: 0 0 12em;
+	}
+}
+

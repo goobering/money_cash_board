@@ -1,0 +1,14 @@
+<div class="total-value"><p><%= @transaction_value %></p></div>
+<div class="items-container">
+  <% for transaction in @transactions %>
+    <div class="item">
+      <div class="item-block">
+        <div class="filler"></div>
+          <p class="merchant_name"><%= "#{transaction.merchant_name}" %></p>
+          <p class="value"><%= "#{transaction.value}" %></p>
+          <p class="tag"><%= "#{transaction.tag().name}" %></p>
+        <div class="filler"></div>
+      </div>
+    </div>
+  <% end %>
+</div>

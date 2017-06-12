@@ -1,4 +1,5 @@
 require_relative '../db/sql_runner.rb'
+require_relative './transaction.rb'
 
 class Person
 
@@ -21,6 +22,10 @@ class Person
     sql = "SELECT * FROM people WHERE people.id = #{@id};"
     result = SqlRunner.run(sql)
     return Person.new(result[0])
+  end
+
+  def transactions()
+    return Transaction.all_by_person(self)
   end
 
   def self.find(id)

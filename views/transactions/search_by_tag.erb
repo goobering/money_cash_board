@@ -1,14 +1,4 @@
-<div class="total-value">
-  <p>Total spent: £<%= @transaction_value %></p>
-</div>
-<form action="/person/<%= @person.id %>/searchbytag/" method="post">
-  <select name="tag_id" id="tag-select">
-    <% for tag in @tags %>
-      <option value="<%= tag.id %>"><%= "#{tag.name}" %></option>
-    <% end %>
-  </select>
-  <input type='submit' value="OK">
-</form>
+<div class="total-value"><p>Total spent on <%= @tag.name %>: £<%= @transaction_value %></p></div>
 <div class="items-container">
   <% for transaction in @transactions %>
     <div class="item">

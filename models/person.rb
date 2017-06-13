@@ -29,7 +29,7 @@ class Person
   end
 
   def update(options)
-      sql = "UPDATE people SET (first_name, last_name) = ('#{options['first_name']}', '#{options['first_name']}') WHERE id = #{options['id']};"
+      sql = "UPDATE people SET (first_name, last_name) = ('#{options['first_name']}', '#{options['last_name']}') WHERE id = #{options['id']};"
       SqlRunner.run(sql)
   end
 

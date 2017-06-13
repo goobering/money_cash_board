@@ -1,0 +1,6 @@
+<h1>Delete current user</h1>
+<p>This will delete the current user and all their transactions!</p>
+<p>Are you sure you want to do this?</p>
+<form action="/person/<%= @person.id %>/delete" method="post">
+    <button class="btn-delete-user">OK</button>
+</form>

@@ -10,7 +10,7 @@ require 'pry-byebug'
 # Show list of transactions belonging to given user
 get '/person/:id/transactions' do
   @person = Person.find(params[:id].to_i)
-  @transaction_value = Transaction.sum_values(@person.transactions())
+  @transaction_value = Transaction.pretty_value(Transaction.sum_values(@person.transactions()))
   @transactions = Transaction.all_by_person(@person)
   @tags = Tag.all()
   erb(:'transactions/index')
@@ -26,7 +26,7 @@ get '/person/:id/transactions/searchbytag/:tag_id' do
   @person = Person.find(params[:id].to_i)
   @tag = Tag.find(params[:tag_id].to_i)
   @transactions = Transaction.all_for_person_by_tag(@person, @tag)
-  @transaction_value = Transaction.sum_values(@transactions)
+  @transaction_value = Transaction.pretty_value(Transaction.sum_values(@transactions))
   @tags = Tag.all()
   erb(:'transactions/search_by_tag')
 end
@@ -62,4 +62,8 @@ post '/person/:person_id/transactions/:id/update' do
   redirect to "/person/#{params[:person_id]}/transactions"
 end
 
-# /person/<%= @person.id %>/transactions/<%= transaction.id %>/delete
+post '/person/:person_id/transactions/:id/delete' do
+  transaction = Transaction.find(params[:id])
+  transaction.delete()
+  redirect to "/person/#{params[:person_id]}/transactions"
+end

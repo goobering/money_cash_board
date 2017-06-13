@@ -2,11 +2,11 @@ header {
 	background-color: #58A4B0;
 	padding: 10px 0 0 0;
 	align-items: flex-end; 
-    display: flex; 
-    justify-content: center; 
+  display: flex; 
+  justify-content: center; 
 }
 
 .header-image {
 	max-width: 50%;
-  	height: auto;
+	height: auto;
 }

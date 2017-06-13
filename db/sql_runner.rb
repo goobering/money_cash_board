@@ -3,7 +3,7 @@ class SqlRunner
 
   def self.run( sql )
     begin
-      db = PG.connect({ dbname: 'money_cash_board', host: 'localhost' })
+      db = PG.connect({ dbname: 'scunner', host: 'localhost' })
       result = db.exec( sql )
     ensure
       db.close

@@ -13,6 +13,10 @@ class Transaction
     @tag_id = options['tag_id'].to_i
   end
 
+  def self.pretty_value(value)
+    return '%.2f'% value
+  end
+
   def save()
     sql = "INSERT INTO transactions (merchant_name, value, person_id, tag_id) VALUES ('#{@merchant_name}', #{@value}, #{@person_id}, #{@tag_id});"
     result = SqlRunner.run(sql)

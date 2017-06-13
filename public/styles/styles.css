@@ -1,3 +1,7 @@
+a, a:visited, a:hover, a:active {
+  color: inherit;
+}
+
 .HolyGrail,
 .HolyGrail-body {
 	font-family: 'Poppins', sans-serif;

@@ -16,7 +16,7 @@ CREATE TABLE tags (
 CREATE TABLE transactions (
   id SERIAL8 primary key,
   merchant_name VARCHAR(255),
-  value INT8,
+  value DECIMAL,
   person_id INT8 references people(id),
   tag_id INT8 references tags(id)
 );

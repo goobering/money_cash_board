@@ -1,27 +1,34 @@
 <div class="total-value">
   <p>Total spent on <%= @tag.name %>: £<%= @transaction_value %></p>
 </div>
-<form action="/person/<%= @person.id %>/searchbytag" method="post">
-  <select name="tag_id" id="tag-select">
-    <% for tag in @tags %>
-      <% if tag.id == @tag.id %>
-        <option value="<%= tag.id %>" selected><%= "#{tag.name}" %></option>
-      <% else %>
-        <option value="<%= tag.id %>"><%= "#{tag.name}" %></option>
-      <% end %> 
-    <% end %>
-  </select>
-  <input type='submit' value="OK">
-</form>
+
+<div class="items-control-bar">
+  <a class="btn-new-item" href="/person/<%= @person.id %>/transactions/new"><div class="btn-new-item"><p class="btn-new-p">New</p></div></a>
+  <form action="/person/<%= @person.id %>/searchbytag" method="post">
+    <select name="tag_id" id="tag-select">
+      <% for tag in @tags %>
+        <% if tag.id == @tag.id %>
+          <option value="<%= tag.id %>" selected><%= "#{tag.name}" %></option>
+        <% else %>
+          <option value="<%= tag.id %>"><%= "#{tag.name}" %></option>
+        <% end %> 
+      <% end %>
+    </select>
+    <input type='submit' value="OK">
+  </form>
+</div>
 <div class="items-container">
   <% for transaction in @transactions %>
     <div class="item">
       <div class="item-block">
         <div class="filler"></div>
           <p class="merchant_name"><%= "#{transaction.merchant_name}" %></p>
-          <p class="value">£<%= "#{transaction.value}" %></p>
+          <p class="value">£<%= "#{Transaction.pretty_value(transaction.value)}" %></p>
           <p class="tag"><%= "#{transaction.tag().name}" %></p>
-        <div class="filler"></div>
+        <div class="filler-right">
+          <a class="btn-edit" href="/person/<%= @person.id %>/transactions/<%= transaction.id %>/update"><img class="btn-img" src="/images/pencil.png" alt="Edit"></a>
+          <a class="btn-delete" href="/person/<%= @person.id %>/transactions/<%= transaction.id %>/delete"><img class="btn-img" src="/images/bin.png" alt="Delete"></a>
+      </div>
       </div>
     </div>
   <% end %>

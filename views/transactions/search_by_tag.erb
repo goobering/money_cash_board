@@ -1,5 +1,12 @@
 <div class="total-value">
+  <p>Budget: £<%= @budget_value %></p>
+  <p>Total spent: £<%= @transaction_value %></p>
   <p>Total spent on <%= @tag.name %>: £<%= @transaction_value %></p>
+  <% if @person.over_budget() %>
+    <p class="p-over-budget">Remaining: £<%= @remaining_value %></p>
+  <% else %>
+    <p class="p-under-budget">Remaining: £<%= @remaining_value %></p>
+  <% end %>
 </div>
 
 <div class="items-control-bar">

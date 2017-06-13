@@ -10,7 +10,9 @@ require 'pry-byebug'
 # Show list of transactions belonging to given user
 get '/person/:id/transactions' do
   @person = Person.find(params[:id].to_i)
+  @budget_value = Person.pretty_value(@person.budget)
   @transaction_value = Transaction.pretty_value(Transaction.sum_values(@person.transactions()))
+  @remaining_value = Person.pretty_value(@person.remaining_budget())
   @transactions = Transaction.all_by_person(@person)
   @tags = Tag.all()
   erb(:'transactions/index')
@@ -26,6 +28,8 @@ get '/person/:id/transactions/searchbytag/:tag_id' do
   @person = Person.find(params[:id].to_i)
   @tag = Tag.find(params[:tag_id].to_i)
   @transactions = Transaction.all_for_person_by_tag(@person, @tag)
+  @budget_value = Person.pretty_value(@person.budget)
+  @remaining_value = Person.pretty_value(@person.remaining_budget())
   @transaction_value = Transaction.pretty_value(Transaction.sum_values(@transactions))
   @tags = Tag.all()
   erb(:'transactions/search_by_tag')

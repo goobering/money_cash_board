@@ -11,11 +11,11 @@ SqlRunner.run(sql)
 sql = "DELETE FROM people;"
 SqlRunner.run(sql)
 
-person_1 = Person.new({'first_name' => 'Dave', 'last_name' => 'McDave'})
+person_1 = Person.new({'first_name' => 'Dave', 'last_name' => 'McDave', 'budget' => 1000})
 person_1.save()
-person_2 = Person.new({'first_name' => 'Bob', 'last_name' => 'McBob'})
+person_2 = Person.new({'first_name' => 'Bob', 'last_name' => 'McBob', 'budget' => 2000})
 person_2.save()
-person_3 = Person.new({'first_name' => 'Frieda', 'last_name' => 'McFrieda'})
+person_3 = Person.new({'first_name' => 'Frieda', 'last_name' => 'McFrieda', 'budget' => 3000})
 person_3.save()
 
 tag_array = [

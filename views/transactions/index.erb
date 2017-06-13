@@ -1,5 +1,13 @@
+<!-- Awkward to maintain this and search_by_tag.erb side by side - should refactor -->
 <div class="total-value">
+  <p>Budget: £<%= @budget_value %></p>
   <p>Total spent: £<%= @transaction_value %></p>
+  <% if @person.over_budget() %>
+    <p class="p-over-budget">Remaining: £<%= @remaining_value %></p>
+  <% else %>
+    <p class="p-under-budget">Remaining: £<%= @remaining_value %></p>
+  <% end %>
+
 </div>
 <div class="items-control-bar">
   <a class="btn-new-item" href="/person/<%= @person.id %>/transactions/new"><p class="btn-new-p">New</p></a>
@@ -12,6 +20,7 @@
     <input type='submit' value="OK">
   </form>
 </div>
+
 <div class="items-container">
   <% for transaction in @transactions %>
     <div class="item">

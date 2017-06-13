@@ -23,7 +23,7 @@ class Tag
   end
 
   def update(options)
-      sql = "UPDATE tags SET (name) = ('#{options['name']}' WHERE id = #{options['id']};"
+      sql = "UPDATE tags SET (name) = ('#{options['name']}') WHERE id = #{options['id']};"
       SqlRunner.run(sql)
   end
 

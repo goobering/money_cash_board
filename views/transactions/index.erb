@@ -23,12 +23,9 @@
           <p class="tag"><%= "#{transaction.tag().name}" %></p>
           <div class="filler-right">
             <a class="btn-edit" href="/person/<%= @person.id %>/transactions/<%= transaction.id %>/update"><img class="btn-img" src="/images/pencil.png" alt="Edit"></a>
-
             <form action="/person/<%= @person.id %>/transactions/<%= transaction.id %>/delete" method="post">
                 <button class="btn-delete"><img class="btn-img" src="/images/bin.png" alt="Delete"></button>
             </form>
-
-            
           </div>
       </div>
     </div>

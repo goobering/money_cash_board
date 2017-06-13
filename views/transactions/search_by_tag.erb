@@ -23,6 +23,13 @@
     </select>
     <input type='submit' value="OK">
   </form>
+  <form action="/person/<%= @person.id %>/transactions/searchbydate" method="post">
+    <label for="start-date">Start date:</label>
+    <input id="start-date" name="start_date" type="date">
+    <label for="end-date">End date:</label>
+    <input id="end-date" name="end_date" type="date">
+    <input type='submit' value="OK">
+  </form>
 </div>
 <div class="items-container">
   <% for transaction in @transactions %>
@@ -32,6 +39,7 @@
           <p class="merchant_name"><%= "#{transaction.merchant_name}" %></p>
           <p class="value">£<%= "#{Transaction.pretty_value(transaction.value)}" %></p>
           <p class="tag"><%= "#{transaction.tag().name}" %></p>
+          <p class="date"><%= "#{Transaction.pretty_timestamp(transaction.timestamp)}" %></p>
         <div class="filler-right">
           <a class="btn-edit" href="/person/<%= @person.id %>/transactions/<%= transaction.id %>/update"><img class="btn-img" src="/images/pencil.png" alt="Edit"></a>
           <form action="/person/<%= @person.id %>/transactions/<%= transaction.id %>/delete" method="post">

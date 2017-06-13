@@ -25,7 +25,7 @@ class Transaction
   end
 
   def update(options)
-    sql = "UPDATE transactions SET (merchant_name, value, person_id, tag_id) = ('#{options['merchant_name']}', #{options['value']}, #{options['person_id']}, #{options['tag_id']}, '#{options['timestamp']}') WHERE id = #{options['id']};"
+    sql = "UPDATE transactions SET (merchant_name, value, person_id, tag_id, timestamp) = ('#{options['merchant_name']}', #{options['value']}, #{options['person_id']}, #{options['tag_id']}, '#{options['timestamp']}') WHERE id = #{options['id']};"
 
     SqlRunner.run(sql)
   end
@@ -59,6 +59,12 @@ class Transaction
     return result.map {|transaction| Transaction.new(transaction)}
   end
 
+  def self.all_for_person_by_date_range(person, start_date, end_date)
+    sql = "SELECT * FROM transactions WHERE transactions.person_id = #{person.id} AND transactions.timestamp > '#{start_date}' AND transactions.timestamp < '#{end_date}';"
+    result = SqlRunner.run(sql)
+    return result.map {|transaction| Transaction.new(transaction)}
+  end
+
   def self.find(id)
     sql = "SELECT * FROM transactions WHERE transactions.id = #{id};"
     result = SqlRunner.run(sql)
@@ -76,6 +82,10 @@ class Transaction
 
   def self.pretty_value(value)
     return '%.2f'% value
+  end
+
+  def self.pretty_timestamp(timestamp)
+    return timestamp.strftime("%Y-%m-%dT%H:%M")
   end
 
 end

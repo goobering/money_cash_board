@@ -1,5 +1,6 @@
 require 'sinatra'
 require 'sinatra/contrib/all'
+require 'date'
 
 require_relative '../models/transaction.rb'
 require_relative '../models/person.rb'
@@ -11,33 +12,51 @@ require 'pry-byebug'
 get '/person/:id/transactions' do
   @person = Person.find(params[:id].to_i)
   @budget_value = Person.pretty_value(@person.budget)
+  @transactions = Transaction.all_by_person(@person)
   @transaction_value = Transaction.pretty_value(Transaction.sum_values(@person.transactions()))
   @remaining_value = Person.pretty_value(@person.remaining_budget())
-  @transactions = Transaction.all_by_person(@person)
   @tags = Tag.all()
   erb(:'transactions/index')
 end
 
 # Accept tag name selected by user, redirect to appropriate page of transactions
-post '/person/:id/searchbytag' do
+post '/person/:id/transactions/searchbytag' do
   redirect to("/person/#{params[:id]}/transactions/searchbytag/#{params[:tag_id]}")
 end
 
 # Display transactions belonging to a given user, with a given tag
 get '/person/:id/transactions/searchbytag/:tag_id' do
   @person = Person.find(params[:id].to_i)
-  @tag = Tag.find(params[:tag_id].to_i)
-  @transactions = Transaction.all_for_person_by_tag(@person, @tag)
   @budget_value = Person.pretty_value(@person.budget)
-  @remaining_value = Person.pretty_value(@person.remaining_budget())
+  @transactions = Transaction.all_for_person_by_tag(@person, @tag)
   @transaction_value = Transaction.pretty_value(Transaction.sum_values(@transactions))
+  @remaining_value = Person.pretty_value(@person.remaining_budget())
+  @tag = Tag.find(params[:tag_id].to_i)
   @tags = Tag.all()
   erb(:'transactions/search_by_tag')
+end
+
+# Accept tag name selected by user, redirect to appropriate page of transactions
+post '/person/:id/transactions/searchbydate' do
+  query = params.map{|key, value| "#{key}=#{value}"}.join("&")
+  redirect to("/person/#{params[:id]}/transactions/searchbydate?#{query}")
+end
+
+# Display transactions belonging to a given user, with a given date range
+get '/person/:id/transactions/searchbydate' do
+  @person = Person.find(params[:id].to_i)
+  @budget_value = Person.pretty_value(@person.budget)
+  @transactions = Transaction.all_for_person_by_date_range(@person, params[:start_date], params[:end_date])
+  @transaction_value = Transaction.pretty_value(Transaction.sum_values(@transactions))
+  @remaining_value = Person.pretty_value(@person.remaining_budget())
+  @tags = Tag.all()
+  erb(:'transactions/search_by_date')
 end
 
 # Display form for creating a new transaction
 get '/person/:id/transactions/new' do
   @person = Person.find(params[:id].to_i)
+  @default_time = DateTime.now().strftime("%Y-%m-%dT%H:%M")
   @tags = Tag.all()
   erb(:'transactions/new_transaction')
 end

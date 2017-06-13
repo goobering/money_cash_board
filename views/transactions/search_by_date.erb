@@ -1,7 +1,7 @@
-<!-- Awkward to maintain this and search_by_tag.erb side by side - should refactor -->
 <div class="total-value">
   <p>Budget: £<%= @budget_value %></p>
   <p>Total spent: £<%= @transaction_value %></p>
+  <p>Total spent between <%= params[:start_date] %> and <%= params[:end_date] %>: £<%= @transaction_value %></p>
   <% if @person.over_budget() %>
     <p class="p-over-budget">Remaining: £<%= @remaining_value %></p>
   <% else %>
@@ -21,29 +21,27 @@
   </form>
   <form action="/person/<%= @person.id %>/transactions/searchbydate" method="post">
     <label for="start-date">Start date:</label>
-    <input id="start-date" name="start_date" type="date">
+    <input id="start-date" name="start_date" type="date" value="<%= params[:start_date] %>">
     <label for="end-date">End date:</label>
-    <input id="end-date" name="end_date" type="date">
+    <input id="end-date" name="end_date" type="date" value="<%= params[:end_date] %>">
     <input type='submit' value="OK">
   </form>
 </div>
-
 <div class="items-container">
   <% for transaction in @transactions %>
     <div class="item">
       <div class="item-block">
-        <div class="filler-left"></div>
+        <div class="filler"></div>
           <p class="merchant_name"><%= "#{transaction.merchant_name}" %></p>
-          <!-- Pretty ugly way to do this, should be refactored: -->
           <p class="value">£<%= "#{Transaction.pretty_value(transaction.value)}" %></p>
           <p class="tag"><%= "#{transaction.tag().name}" %></p>
           <p class="date"><%= "#{Transaction.pretty_timestamp(transaction.timestamp)}" %></p>
-          <div class="filler-right">
-            <a class="btn-edit" href="/person/<%= @person.id %>/transactions/<%= transaction.id %>/update"><img class="btn-img" src="/images/pencil.png" alt="Edit"></a>
-            <form action="/person/<%= @person.id %>/transactions/<%= transaction.id %>/delete" method="post">
-                <button class="btn-delete"><img class="btn-img" src="/images/bin.png" alt="Delete"></button>
-            </form>
-          </div>
+        <div class="filler-right">
+          <a class="btn-edit" href="/person/<%= @person.id %>/transactions/<%= transaction.id %>/update"><img class="btn-img" src="/images/pencil.png" alt="Edit"></a>
+          <form action="/person/<%= @person.id %>/transactions/<%= transaction.id %>/delete" method="post">
+              <button class="btn-delete"><img class="btn-img" src="/images/bin.png" alt="Delete"></button>
+          </form>
+      </div>
       </div>
     </div>
   <% end %>

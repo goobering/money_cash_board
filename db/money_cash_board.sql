@@ -19,5 +19,6 @@ CREATE TABLE transactions (
   merchant_name VARCHAR(255),
   value DECIMAL,
   person_id INT8 references people(id) ON DELETE CASCADE,
-  tag_id INT8 references tags(id)
+  tag_id INT8 references tags(id),
+  timestamp TIMESTAMP
 );

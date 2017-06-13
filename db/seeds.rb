@@ -74,11 +74,11 @@ for tag in tag_array
   new_tag.save()
 end
 
-transaction_1 = Transaction.new({'merchant_name' => 'Tesco', 'value' => 20, 'person_id' => person_1.id, 'tag_id' => Tag.all()[0].id})
+transaction_1 = Transaction.new({'merchant_name' => 'Tesco', 'value' => 20, 'person_id' => person_1.id, 'tag_id' => Tag.all()[0].id, 'timestamp' => DateTime.now().to_s})
 transaction_1.save()
-transaction_2 = Transaction.new({'merchant_name' => 'B & Q', 'value' => 30, 'person_id' => person_2.id, 'tag_id' => Tag.all()[1].id})
+transaction_2 = Transaction.new({'merchant_name' => 'B & Q', 'value' => 30, 'person_id' => person_2.id, 'tag_id' => Tag.all()[1].id, 'timestamp' => (DateTime.now() + 10).to_s})
 transaction_2.save()
-transaction_3 = Transaction.new({'merchant_name' => 'Netflix', 'value' => 40, 'person_id' => person_3.id, 'tag_id' => Tag.all()[2].id})
+transaction_3 = Transaction.new({'merchant_name' => 'Netflix', 'value' => 40, 'person_id' => person_3.id, 'tag_id' => Tag.all()[2].id, 'timestamp' => (DateTime.now() + 20).to_s})
 transaction_3.save()
 
 binding.pry

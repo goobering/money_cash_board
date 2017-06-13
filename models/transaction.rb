@@ -1,9 +1,10 @@
+require 'date'
 require_relative '../db/sql_runner.rb'
 require 'pry-byebug'
 class Transaction
 
   attr_reader :id
-  attr_accessor :merchant_name, :value, :person_id, :tag_id
+  attr_accessor :merchant_name, :value, :person_id, :tag_id, :timestamp
 
   def initialize(options)
     @id = options['id'].to_i
@@ -11,10 +12,11 @@ class Transaction
     @value = options['value'].to_f
     @person_id = options['person_id'].to_i
     @tag_id = options['tag_id'].to_i
+    @timestamp = DateTime.parse(options['timestamp'])
   end
 
   def save()
-    sql = "INSERT INTO transactions (merchant_name, value, person_id, tag_id) VALUES ('#{@merchant_name}', #{@value}, #{@person_id}, #{@tag_id});"
+    sql = "INSERT INTO transactions (merchant_name, value, person_id, tag_id, timestamp) VALUES ('#{@merchant_name}', #{@value}, #{@person_id}, #{@tag_id}, '#{@timestamp}');"
     result = SqlRunner.run(sql)
   end
 
@@ -23,7 +25,7 @@ class Transaction
   end
 
   def update(options)
-    sql = "UPDATE transactions SET (merchant_name, value, person_id, tag_id) = ('#{options['merchant_name']}', #{options['value']}, #{options['person_id']}, #{options['tag_id']}) WHERE id = #{options['id']};"
+    sql = "UPDATE transactions SET (merchant_name, value, person_id, tag_id) = ('#{options['merchant_name']}', #{options['value']}, #{options['person_id']}, #{options['tag_id']}, '#{options['timestamp']}') WHERE id = #{options['id']};"
 
     SqlRunner.run(sql)
   end

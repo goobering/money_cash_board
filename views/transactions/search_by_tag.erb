@@ -10,8 +10,8 @@
 </div>
 
 <div class="items-control-bar">
-  <a class="btn-new-item" href="/person/<%= @person.id %>/transactions/new"><div class="btn-new-item"><p class="btn-new-p">New</p></div></a>
-  <form action="/person/<%= @person.id %>/searchbytag" method="post">
+  <a class="btn-new-item" href="/person/<%= @person.id %>/transactions/new"><div class="btn-new-item"><p class="btn-new-p">New</p></div></a>  
+  <form action="/person/<%= @person.id %>/transactions/searchbytag" method="post">
     <select name="tag_id" id="tag-select">
       <% for tag in @tags %>
         <% if tag.id == @tag.id %>

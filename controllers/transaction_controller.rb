@@ -29,7 +29,7 @@ end
 get '/person/:id/transactions/searchbytag/:tag_id' do
   @person = Person.find(params[:id].to_i)
   @budget_value = Person.pretty_value(@person.budget)
-  @transactions = Transaction.all_for_person_by_tag(@person, @tag)
+  @transactions = Transaction.all_for_person_by_tag(@person, params[:tag_id])
   @transaction_value = Transaction.pretty_value(Transaction.sum_values(@transactions))
   @remaining_value = Person.pretty_value(@person.remaining_budget())
   @tag = Tag.find(params[:tag_id].to_i)

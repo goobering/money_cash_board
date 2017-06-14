@@ -54,7 +54,7 @@ class Transaction
   end
 
   def self.all_for_person_by_tag(person, tag)
-    sql = "SELECT * FROM transactions WHERE transactions.person_id = #{person.id} AND transactions.tag_id = #{tag.id};"
+    sql = "SELECT * FROM transactions WHERE transactions.person_id = #{person.id} AND transactions.tag_id = #{tag};"
     result = SqlRunner.run(sql)
     return result.map {|transaction| Transaction.new(transaction)}
   end

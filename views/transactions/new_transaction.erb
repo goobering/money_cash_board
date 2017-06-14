@@ -1,14 +1,27 @@
-<form action="/person/<%= "#{@person.id}" %>/transactions" method="POST">
-  <label for="merchant-name">Merchant:</label>
-  <input type="text" name="merchant_name" id="merchant-name" required>
-  <label for="value">Value:</label>
-  <input type="number" name="value" id="value" placeholder="123.45" min="0.01" step="0.01" required>
-  <select name="tag_id" id="tag-select">
-    <% for tag in @tags %>
-      <option value="<%= tag.id %>"><%= "#{tag.name}" %></option>
-    <% end %>
-  </select>
-  <label for="timestamp">Date/Time:</label>
-  <input id="timestamp" name="timestamp" type="datetime-local" value="<%= @default_time %>">
-  <input type="submit" value="OK">
-</form>
+<div class="new-transaction-container">
+  <form class="form-new-transaction" action="/person/<%= "#{@person.id}" %>/transactions" method="POST">
+    <div class="input-merchant">
+      <label class="new-transaction-form-label" for="merchant-name">Merchant:</label>
+      <input type="text" name="merchant_name" id="merchant-name" required>
+    </div>
+    <div class="input-value">
+      <label class="new-transaction-form-label" for="value">Value:</label>
+      <input type="number" name="value" id="value" placeholder="123.45" min="0.01" step="0.01" required>
+    </div>
+    <div class="input-tag">
+      <label class="new-transaction-form-label" for="tag-select">Tag:</label>
+      <select name="tag_id" id="tag-select">
+        <% for tag in @tags %>
+          <option value="<%= tag.id %>"><%= "#{tag.name}" %></option>
+        <% end %>
+      </select>
+    </div>
+    <div class="input-time">
+      <label class="new-transaction-form-label" for="timestamp">Date/Time:</label>
+      <input id="timestamp" name="timestamp" type="datetime-local" value="<%= @default_time %>">
+    </div>
+    <div class="update-submit">
+      <input type="submit" value="OK">
+    </div>
+  </form>  
+</div>

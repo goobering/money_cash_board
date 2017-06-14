@@ -23,10 +23,6 @@ main {
 	flex-direction: column;
 }
 
-.nav-list {
-	list-style-type : none;
-}
-
 .HolyGrail-nav,
 .HolyGrail-ads {
 	background-color: #D8DBE2;
@@ -52,3 +48,8 @@ main {
 	}
 }
 
+
+.footer-text {
+	text-align: center;
+	font-size: 0.8rem;
+}

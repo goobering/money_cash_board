@@ -88,4 +88,11 @@ class Transaction
     return timestamp.strftime("%Y-%m-%dT%H:%M")
   end
 
+  def self.presentation_timestamp_date(timestamp)
+    return timestamp.strftime("%Y-%m-%d")
+  end
+
+  def self.presentation_timestamp_time(timestamp)
+    return timestamp.strftime("%H:%M")
+  end
 end

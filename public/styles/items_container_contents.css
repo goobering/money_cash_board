@@ -1,14 +1,8 @@
-.filler-left,
-.filler-right {
-	margin: auto;
-	flex: 1;
-}
-
-.filler-right {
+.item-edit-controls {
 	font-size: 0.5em;
 	display: flex;
 	flex-direction: row;
-	justify-content: space-around;
+	justify-content: center;
 	align-content: center;
 }
 
@@ -16,6 +10,7 @@
 .btn-delete {
 	background-color: #58A4B0;
 	margin: 0 0 6px 6px;
+	max-height: 40px;
 }
 
 .btn-delete {
@@ -32,17 +27,17 @@
 
 .merchant_name,
 .value,
-.tag {	
+.tag,
+.date-time {	
 	margin: 0px 0px 6px 0px;
 }
 
 .merchant_name {
-	flex: 2;
+	flex: 1;
 	background-color: #a9bcd0;
 	vertical-align: middle;
-	text-align: right;
+	text-align: center;
 	min-width: 140px;
-	padding: 0 10px 0  0;
 }
 
 .value {
@@ -53,8 +48,64 @@
 }
 
 .tag {
-	flex: 2;
+	flex: 1;
 	background-color: #a9bcd0;
+	text-align: center;
 	min-width: 150px;
-	padding: 0 0 0 10px;
+}
+
+.date-time {
+	flex: 1;
+	background-color: #b3cadd;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.date {
+	margin: 10px 0;
+	padding: 10px 0;
+}
+
+.time {
+	margin: 6px 0;
+	padding: 3px 0;
+}
+
+@media (min-width: 768px) {
+	.item-edit-controls {
+		justify-content: space-around;
+		align-content: center;
+	}
+
+	.merchant_name {
+		flex: 2;
+		text-align: right;
+		padding: 0 10px 0  0;
+	}
+
+	.value {
+		flex: 1;
+	}
+
+	.tag {
+		flex: 2;
+		text-align: left;
+		padding: 0 0 0 10px;
+	}
+
+	.date-time {
+		flex: 1;
+		white-space: nowrap;
+		flex-direction: column;
+		font-size: 0.8em;
+	}
+
+	.date {
+		margin: 0 6px;
+	}
+
+	.time {
+		margin: 0 6px;
+	}
 }

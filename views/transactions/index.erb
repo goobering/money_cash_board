@@ -11,20 +11,35 @@
 
 <div class="items-control-bar">
   <a class="btn-new-item" href="/person/<%= @person.id %>/transactions/new"><p class="btn-new-p">New</p></a>
-  <form action="/person/<%= @person.id %>/transactions/searchbytag" method="post">
-    <select name="tag_id" id="tag-select">
-      <% for tag in @tags %>
-        <option value="<%= tag.id %>"><%= "#{tag.name}" %></option>
-      <% end %>
-    </select>
-    <input type='submit' value="OK">
+  <hr />
+  <form class="form-filter-by-tag" action="/person/<%= @person.id %>/transactions/searchbytag" method="post">
+    <div class="label-filter-by-tag">
+      <label class="form-label" for="tag-select">Filter by tag:</label>
+    </div>
+    <div class="input-filter-by-tag">
+      <select class="input-tag" name="tag_id" id="tag-select">
+        <% for tag in @tags %>
+          <option value="<%= tag.id %>"><%= "#{tag.name}" %></option>
+        <% end %>
+      </select>
+      <input class="submit-filter-by-tag" type='submit' value="OK">
+    </div>
   </form>
-  <form action="/person/<%= @person.id %>/transactions/searchbydate" method="post">
-    <label for="start-date">Start date:</label>
-    <input id="start-date" name="start_date" type="date">
-    <label for="end-date">End date:</label>
-    <input id="end-date" name="end_date" type="date">
-    <input type='submit' value="OK">
+  <hr />
+  <form class="form-filter-by-date" action="/person/<%= @person.id %>/transactions/searchbydate" method="post">
+    <div class="form-dates">
+      <div class="input-start-date">
+        <label class="date-form-label" for="start-date">Start date:</label>
+        <input id="start-date" name="start_date" type="date">
+      </div>
+      <div class="input-end-date">
+        <label class="date-form-label" for="end-date">End date:</label>
+        <input id="end-date" name="end_date" type="date">
+      </div>
+    </div>
+    <div class="submit-filter-by-date">
+      <input type='submit' value="OK">
+    </div>
   </form>
 </div>
 
@@ -32,13 +47,15 @@
   <% for transaction in @transactions %>
     <div class="item">
       <div class="item-block">
-        <div class="filler-left"></div>
           <p class="merchant_name"><%= "#{transaction.merchant_name}" %></p>
           <!-- Pretty ugly way to do this, should be refactored: -->
           <p class="value">£<%= "#{Transaction.pretty_value(transaction.value)}" %></p>
           <p class="tag"><%= "#{transaction.tag().name}" %></p>
-          <p class="date"><%= "#{Transaction.pretty_timestamp(transaction.timestamp)}" %></p>
-          <div class="filler-right">
+          <div class="date-time">
+            <p class="date"><%= "#{Transaction.presentation_timestamp_date(transaction.timestamp)}" %> / </p>
+            <p class="time"><%= "#{Transaction.presentation_timestamp_time(transaction.timestamp)}" %></p>
+          </div>
+          <div class="item-edit-controls">
             <a class="btn-edit" href="/person/<%= @person.id %>/transactions/<%= transaction.id %>/update"><img class="btn-img" src="/images/pencil.png" alt="Edit"></a>
             <form action="/person/<%= @person.id %>/transactions/<%= transaction.id %>/delete" method="post">
                 <button class="btn-delete"><img class="btn-img" src="/images/bin.png" alt="Delete"></button>

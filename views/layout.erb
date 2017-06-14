@@ -12,6 +12,10 @@
     <link rel="stylesheet" type="text/css" href="/styles/items_container.css">
     <link rel="stylesheet" type="text/css" href="/styles/items_container_contents.css">
     <link rel="stylesheet" type="text/css" href="/styles/total_value.css">
+    <link rel="stylesheet" type="text/css" href="/styles/nav_menu.css">
+    <link rel="stylesheet" type="text/css" href="/styles/select_user.css">
+    <link rel="stylesheet" type="text/css" href="/styles/update_user.css">
+    <link rel="stylesheet" type="text/css" href="/styles/new_transaction.css">
     <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
   </head>
 
@@ -27,13 +31,13 @@
             <%= yield %>
         </main>
         <nav class="HolyGrail-nav">
-            <ul class="nav-list">
+            <div class="nav-container">
                 <!-- Nav items require Person ID - don't show if no Person selected -->
                 <%= erb :'nav_partials/user_not_present' unless @person %>
                 <%= erb :'nav_partials/user_present' if @person %>
-            </ul>
+            </div>
         </nav>
         <aside class="HolyGrail-ads" />
     </div>
-    <footer><p>THIS IS A FOOTER</p></footer>
+    <footer><p class="footer-text">© 2017-2017, ScunnerCorp Inc. or its affiliates</p></footer>
 </html>

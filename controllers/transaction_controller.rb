@@ -16,6 +16,7 @@ get '/person/:id/transactions' do
   @transaction_value = Transaction.pretty_value(Transaction.sum_values(@person.transactions()))
   @remaining_value = Person.pretty_value(@person.remaining_budget())
   @tags = Tag.all()
+
   erb(:'transactions/index')
 end
 
@@ -33,11 +34,13 @@ get '/person/:id/transactions/searchbytag/:tag_id' do
   @remaining_value = Person.pretty_value(@person.remaining_budget())
   @tag = Tag.find(params[:tag_id].to_i)
   @tags = Tag.all()
+
   erb(:'transactions/search_by_tag')
 end
 
 # Accept tag name selected by user, redirect to appropriate page of transactions
 post '/person/:id/transactions/searchbydate' do
+  # Forward the params from the POSTed form to the searchbydate page
   query = params.map{|key, value| "#{key}=#{value}"}.join("&")
   redirect to("/person/#{params[:id]}/transactions/searchbydate?#{query}")
 end
@@ -50,6 +53,7 @@ get '/person/:id/transactions/searchbydate' do
   @transaction_value = Transaction.pretty_value(Transaction.sum_values(@transactions))
   @remaining_value = Person.pretty_value(@person.remaining_budget())
   @tags = Tag.all()
+
   erb(:'transactions/search_by_date')
 end
 
@@ -85,6 +89,7 @@ post '/person/:person_id/transactions/:id/update' do
   redirect to "/person/#{params[:person_id]}/transactions"
 end
 
+# Delete a transaction, redirect to main transaction list
 post '/person/:person_id/transactions/:id/delete' do
   transaction = Transaction.find(params[:id])
   transaction.delete()

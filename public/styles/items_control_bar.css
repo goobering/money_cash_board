@@ -11,6 +11,7 @@
 
 .btn-new-item {
   background-color: #58A4B0;
+  margin: 6px;
   width: 40px;
   height: 40px;
   display: flex;
@@ -30,4 +31,63 @@
 
 a, a:visited, a:hover, a:active {
   color: inherit;
+}
+
+.form-filter-by-tag {
+  margin: 0 0 0 6px;
+  padding: 0 6px 0 0;
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.input-tag {
+  margin: 0 6px 6px 0;
+}
+
+.submit-filter-by-tag {
+  margin: 0 0 6px 0;
+}
+
+.form-filter-by-date {
+  margin: 0 0 0 6px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.input-filter-by-tag {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.date-form-label {
+  width: 90px;
+}
+
+.form-dates {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.input-start-date {
+  margin: 0 6px 6px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-end-date {
+  margin: 0 6px 6px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.submit-filter-by-date {
+  margin: 0 0 6px 0;
+  display: flex;
+  align-items: flex-end;
+}
+
+.form-label,
+.date-form-label {
+  color: white;
 }

@@ -1,12 +1,14 @@
-<h1>Select a user</h1>
+<div class="select-user">
+  <h1 class="heading-select-user">Select a user</h1>
 
-<form action="/person" method="post">
-  <label for="person-select">User name:</label>
-  <select name="id" id="person-select">
-    <% for person in @people %>
-      <option value="<%= person.id %>"><%= "#{person.first_name} #{person.last_name}" %></option>
-    <% end %>
-  </select>
+  <form action="/person" method="post">
+    <label class="form-label" for="person-select">User name:</label>
+    <select name="id" id="person-select">
+      <% for person in @people %>
+        <option value="<%= person.id %>"><%= "#{person.first_name} #{person.last_name}" %></option>
+      <% end %>
+    </select>
 
-  <input type='submit' value="OK">
-</form>
+    <input type='submit' value="OK">
+  </form>
+</div>
